@@ -2,84 +2,350 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Илья Бороненко — IT</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <title>Илья Бороненко — IT</title>
+  <meta name="description" content="Системный администратор / Network Engineer — Linux, Networking, DevOps">
+  <meta name="theme-color" content="#1a1f2e">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #e2e8f0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0f1219;
+      --bg-card: #1a1f2e;
+      --bg-secondary: #242b3d;
+      --text-primary: #e8eaf0;
+      --text-secondary: #8892a8;
+      --accent: #22d3bb;
+      --accent-hover: #14b8a6;
+      --border: #2d3548;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
+      justify-content: center;
+      padding: 1.5rem;
+      line-height: 1.6;
     }
 
     .card {
-      background: #111827;
-      padding: 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
       border-radius: 16px;
-      width: 360px;
+      width: 100%;
+      max-width: 420px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .terminal-header {
+      background: var(--bg-secondary);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ff5f57; }
+    .dot-yellow { background: #febc2e; }
+    .dot-green { background: #28c840; }
+
+    .terminal-path {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .card-content {
+      padding: 2rem;
+    }
+
+    .profile {
       text-align: center;
-      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      margin-bottom: 1.5rem;
     }
 
     .avatar {
-      width: 90px;
-      height: 90px;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--accent), #14b8a6);
       border-radius: 50%;
-      background: #2563eb;
-      margin: 0 auto 15px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
-      font-weight: bold;
+      margin: 0 auto 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--bg-primary);
     }
 
-    h1 {
-      margin: 10px 0 5px;
-      font-size: 22px;
+    .name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.02em;
     }
 
-    p {
-      color: #94a3b8;
-      margin: 5px 0;
-      font-size: 14px;
+    .role {
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 500;
     }
 
-    .links a {
-      display: block;
-      margin-top: 10px;
-      padding: 8px;
-      border: 1px solid #3b82f6;
+    .terminal-block {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
       border-radius: 8px;
-      color: #3b82f6;
-      text-decoration: none;
-      transition: 0.2s;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
     }
 
-    .links a:hover {
-      background: #3b82f6;
-      color: #0f172a;
+    .terminal-prompt {
+      color: var(--accent);
+    }
+
+    .terminal-command {
+      color: var(--text-primary);
+    }
+
+    .terminal-output {
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+      padding-left: 0;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .skill {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 0.5rem;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .skill:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .skill-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .skill-name {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .link:hover {
+      border-color: var(--accent);
+      background: var(--bg-card);
+    }
+
+    .link svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .link-arrow {
+      margin-left: auto;
+      color: var(--text-secondary);
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .link:hover .link-arrow {
+      transform: translateX(4px);
+      color: var(--accent);
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem;
+      background: rgba(34, 211, 187, 0.1);
+      border: 1px solid rgba(34, 211, 187, 0.2);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--accent);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    @media (max-width: 400px) {
+      .card-content {
+        padding: 1.5rem;
+      }
+      
+      .skills {
+        gap: 0.5rem;
+      }
+      
+      .skill {
+        padding: 0.75rem 0.25rem;
+      }
     }
   </style>
 </head>
-
 <body>
-  <div class="card">
-    <div class="avatar">IB</div>
-    <h1>Илья Бороненко</h1>
-    <p>Системный администратор / Network Engineer</p>
-    <p>Linux • Networking • DevOps</p>
-
-    <div class="links">
-      <a href="https://github.com/">GitHub</a>
-      <a href="#">Telegram</a>
-      <a href="#">Email</a>
+  <main class="card">
+    <div class="terminal-header">
+      <div class="terminal-dots">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+      </div>
+      <span class="terminal-path">~/boronenko-it</span>
     </div>
-  </div>
+    
+    <div class="card-content">
+      <div class="profile">
+        <div class="avatar">IB</div>
+        <h1 class="name">Илья Бороненко</h1>
+        <p class="role">Системный администратор / Network Engineer</p>
+      </div>
+
+      <div class="terminal-block">
+        <span class="terminal-prompt">$</span>
+        <span class="terminal-command"> whoami</span>
+        <p class="terminal-output">IT-специалист с опытом в администрировании Linux-систем, настройке сетевой инфраструктуры и автоматизации DevOps-процессов.</p>
+      </div>
+
+      <div class="skills">
+        <div class="skill">
+          <span class="skill-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto; display: block; color: #22d3bb;">
+              <rect x="4" y="4" width="16" height="16" rx="2"/>
+              <path d="m9 9 6 6"/><path d="m15 9-6 6"/>
+            </svg>
+          </span>
+          <span class="skill-name">Linux</span>
+        </div>
+        <div class="skill">
+          <span class="skill-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto; display: block; color: #22d3bb;">
+              <path d="M9 2v6"/><path d="M15 2v6"/><path d="M12 17v5"/><path d="M5 8h14"/><path d="M6 11v-1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1"/><circle cx="12" cy="14" r="3"/>
+            </svg>
+          </span>
+          <span class="skill-name">Networking</span>
+        </div>
+        <div class="skill">
+          <span class="skill-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto; display: block; color: #22d3bb;">
+              <circle cx="12" cy="12" r="3"/><path d="M12 3v6"/><path d="M12 15v6"/><path d="m3 12 6 0"/><path d="m15 12 6 0"/>
+            </svg>
+          </span>
+          <span class="skill-name">DevOps</span>
+        </div>
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/boronenko-it" class="link" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          <span>GitHub</span>
+          <svg class="link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </a>
+        
+        <a href="https://t.me/boronenko_it" class="link" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+          </svg>
+          <span>Telegram</span>
+          <svg class="link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </a>
+        
+        <a href="mailto:contact@boronenko-it.dev" class="link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          <span>Email</span>
+          <svg class="link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="status">
+        <span class="status-dot"></span>
+        <span>Доступен для проектов</span>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
